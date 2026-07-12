@@ -39,5 +39,3 @@ Google Scholar / LinkedIn 链接：搜 `取消注释`，按提示打开即可。
 </body>
 </html>
 ```
-
-（也可以到时候让 Claude 帮你操作。）
