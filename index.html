@@ -105,36 +105,44 @@
 (function () {
   var btn = document.getElementById('say-name');
   if (!btn) return;
-  if (!('speechSynthesis' in window)) { btn.style.display = 'none'; return; }
 
-  function getVoices() { return window.speechSynthesis.getVoices() || []; }
-  // some browsers load the voice list asynchronously
-  window.speechSynthesis.onvoiceschanged = getVoices;
+  // primary: my own recording
+  var audio = new Audio('name.mp3');
+  audio.preload = 'auto';
 
-  function buildUtterance() {
-    var voices = getVoices();
+  function setSpeaking(on) { btn.classList.toggle('is-speaking', on); }
+
+  // warm up the synthesized-voice list (used only if the recording can't play)
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.onvoiceschanged = function () {};
+    window.speechSynthesis.getVoices();
+  }
+
+  function speakFallback() {
+    if (!('speechSynthesis' in window)) { setSpeaking(false); return; }
+    var voices = window.speechSynthesis.getVoices() || [];
     var zh = voices.filter(function (v) {
       return /^zh([-_](cn|hans|sg))?$/i.test(v.lang) || /Chinese|Mandarin|中文|普通话/i.test(v.name);
     })[0];
     var u;
-    if (zh) {                                   // most accurate: Mandarin
-      u = new SpeechSynthesisUtterance('张文豪');
-      u.voice = zh;
-      u.lang = zh.lang;
-    } else {                                    // fallback for browsers without a Chinese voice
-      u = new SpeechSynthesisUtterance('Wenhao Zhang');
-      u.lang = 'en-US';
-    }
+    if (zh) { u = new SpeechSynthesisUtterance('张文豪'); u.voice = zh; u.lang = zh.lang; }
+    else { u = new SpeechSynthesisUtterance('Wenhao Zhang'); u.lang = 'en-US'; }
     u.rate = 0.9;
-    return u;
+    u.onend = u.onerror = function () { setSpeaking(false); };
+    window.speechSynthesis.speak(u);
   }
 
+  audio.addEventListener('ended', function () { setSpeaking(false); });
+
   btn.addEventListener('click', function () {
-    window.speechSynthesis.cancel();
-    var u = buildUtterance();
-    btn.classList.add('is-speaking');
-    u.onend = u.onerror = function () { btn.classList.remove('is-speaking'); };
-    window.speechSynthesis.speak(u);
+    if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+    setSpeaking(true);
+    audio.pause();
+    audio.currentTime = 0;
+    var p = audio.play();
+    if (p && typeof p.catch === 'function') {
+      p.catch(function () { speakFallback(); });  // recording unavailable -> synthesized voice
+    }
   });
 })();
 </script>
