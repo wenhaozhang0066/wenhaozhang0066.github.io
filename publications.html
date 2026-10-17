@@ -41,6 +41,14 @@
 
   <div class="work">
     <div class="body">
+      <h3>SlideTwin: An Agent-Operable Whole-Slide Image Viewer Simulator</h3>
+      <p>A whole-slide image viewer that pathologists and AI agents read under the same rules. Today's slide-reading agents pan and zoom inside their own harnesses, where pixels are free, coordinates are private, and only the final answer is scored. SlideTwin gives people and agents one environment: microscope-style rule profiles, physical units in micrometres, a virtual clock that charges every action, a replayable log of every pixel served, and protocol checks on every report (cited views must exist, positive findings must be seen at 20&times;, measurements must fit the reported size, and negative calls must be backed by tissue coverage). A pathologist in the browser and an agent over REST, MCP, or a gym-style Python <code>Env</code> share the same session, so every reading can be replayed exactly and checked against what was actually seen. In one replay, an open VLM reported a micro-metastasis after viewing only 0.4% of the tissue at 10&times; or higher.</p>
+      <p class="meta">2026 · Open-source research prototype, v0.1.1 · <a href="SlideTwin/">Blog</a> · <a href="https://github.com/wenhaozhang0066/SlideTwin">GitHub</a> · <a href="https://pypi.org/project/slidetwin/">PyPI</a></p>
+    </div>
+  </div>
+
+  <div class="work">
+    <div class="body">
       <h3>Too Small to Tell: Auditing Sampled Decisions in Self-Evolving Agent Harnesses</h3>
       <p>Self-evolving loops improve LLM agents by iteratively rewriting their harnesses, and many rely on a sample of benchmark units to accept a candidate, select one to deploy, and report its gain, yet never score the units the sample leaves out. Replaying published sampling designs on AgentDojo, Agent-SafetyBench, and Terminal-Bench&nbsp;2, where every candidate was run on every unit, we find errors in all three decisions: accept tests misjudge 13&ndash;37% of clearly separated pairs, selection deploys a worse candidate in up to 54% of runs, and reported gains are off by 5 points or more in up to 78% of cases. Samples drawn from the incumbent's failures are the least reliable: an unchanged copy of the harness appears to gain 16&ndash;55 points and is often accepted. Because real loops advance in steps smaller than this sampling error, we recommend using a random half of the benchmark to reject candidates but a paired test on all units to accept one.</p>
       <p class="meta">2026 · Under review, <span class="venue">NAACL 2027</span></p>
