@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Publications — Wenhao Zhang</title>
-<meta name="description" content="Publications, research projects, and patents of Wenhao Zhang, Ph.D. candidate at the University of Virginia.">
+<meta name="description" content="Publications, research projects, and patents of Wenhao Zhang, Ph.D. student at the University of Virginia.">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -27,15 +27,23 @@
     <div class="body">
       <h3>Auditing Data Leakage in Whole-Slide Image Multimodal Benchmarks</h3>
       <p>We audit the striking zero-shot claims of pathology vision&ndash;language models on whole-slide image VQA and find them compromised by data leakage at two levels: <b>patient-level</b> (slides from one case split across train and test) and <b>institutional-level</b> (different cases sharing staining-batch and scanner signatures through a common Tissue Source Site). Tracing slide, case, and TSS identifiers across public resources, we document 92.3&ndash;100% case-level train&ndash;test overlap on TCGA-derived benchmarks, show both leakage levels are linearly decodable from foundation-model features, and find reported accuracies concentrate on the most contaminated benchmarks &mdash; so current evaluation cannot separate genuine multimodal reasoning from nearest-neighbor retrieval over memorized artifacts. We close with concrete recommendations for contamination-free evaluation.</p>
-      <p class="meta">2026 · Under review, <span class="venue">WACV 2027</span> (Datasets &amp; Benchmarks Track) · <a href="https://arxiv.org/abs/2607.12278">arXiv:2607.12278</a></p>
+      <p class="meta">2026 · <span class="venue">WACV 2027</span> · <a href="https://arxiv.org/abs/2607.12278">arXiv:2607.12278</a></p>
     </div>
   </div>
 
   <div class="work">
     <div class="body">
-      <h3>CleanSlide: A Leakage-Audited and Shortcut-Controlled Benchmark for Whole-Slide Vision&ndash;Language Models</h3>
-      <p>The largest contamination-free VLM benchmark built on TCGA: no Tissue Source Site overlap, no patient-ID overlap, and cleaned question construction. Questions balance answer positions to remove position bias, use strong distractors to avoid easy-option shortcuts, guard against report-to-answer tautology, and carry patient/site isolation through to the question level. Items answerable by text-only models are filtered or balanced, and the blind (vision-free) baseline accuracy is reported as a cleanliness metric.</p>
-      <p class="meta">2026 · In preparation · <a href="https://github.com/wenhaozhang0066/CleanSlide">Code &amp; data</a></p>
+      <h3>Contamination, Prior, or Evidence? Decomposing and Training Evidence Use in Whole-Slide Vision&ndash;Language Models</h3>
+      <p>Accuracy alone does not measure evidence use: it can conflate dataset contamination, prior knowledge, and image evidence. In a lymph-node metastasis study, most public pathology VLMs barely changed when given the whole slide, an annotated lesion, or no image at all. We introduce <b>CleanSlide</b>, a TCGA-based VQA benchmark of 149K audited multiple-choice questions over 9,985 slides with patient- and tissue-source-disjoint splits, where every question is audited for option shortcuts, stem leakage, cross-split duplication, and blind solvability. We further propose <b>Pair-DPO</b>, a preference loss over counterfactual pairs of real slides with opposite, verified findings for the same question and source, which cancels the question-attributable signal and leaves image evidence as the source of preference. Our model gains 15.29% from image evidence on CleanSlide, versus 2.81% for the best published model, and reaches 57.6% and 59.0% on the external CPTAC and BCNB cohorts, outperforming all evaluated models by 9.7% and 3.4%.</p>
+      <p class="meta">2026 · Under review, <span class="venue">ICLR 2027</span> · <a href="https://github.com/wenhaozhang0066/CleanSlide">Code &amp; data</a></p>
+    </div>
+  </div>
+
+  <div class="work">
+    <div class="body">
+      <h3>Too Small to Tell: Auditing Sampled Decisions in Self-Evolving Agent Harnesses</h3>
+      <p>Self-evolving loops improve LLM agents by iteratively rewriting their harnesses, and many rely on a sample of benchmark units to accept a candidate, select one to deploy, and report its gain, yet never score the units the sample leaves out. Replaying published sampling designs on AgentDojo, Agent-SafetyBench, and Terminal-Bench&nbsp;2, where every candidate was run on every unit, we find errors in all three decisions: accept tests misjudge 13&ndash;37% of clearly separated pairs, selection deploys a worse candidate in up to 54% of runs, and reported gains are off by 5 points or more in up to 78% of cases. Samples drawn from the incumbent's failures are the least reliable: an unchanged copy of the harness appears to gain 16&ndash;55 points and is often accepted. Because real loops advance in steps smaller than this sampling error, we recommend using a random half of the benchmark to reject candidates but a paired test on all units to accept one.</p>
+      <p class="meta">2026 · Under review, <span class="venue">NAACL 2027</span></p>
     </div>
   </div>
 
@@ -55,64 +63,48 @@
     </div>
   </div>
 
-  <div class="work">
-    <div class="body">
-      <h3>RENet: Reliable and Efficient Cross-Modality Learning for Unsupervised VI-ReID</h3>
-      <p>A hashing-based metric for reliable cross-modal similarity (+2.39% Rank-1 over common distance metrics) and a multi-directional update module that efficiently bridges the modality gap, achieving state-of-the-art performance.</p>
-      <p class="meta">2024</p>
-    </div>
-  </div>
-
-  <div class="work">
-    <div class="body">
-      <h3>Brain Age Prediction from T1-MRI — Research Internship, Wan Lab, UNMC</h3>
-      <p>Six-month internship at the University of Nebraska Medical Center: enhanced a local U-Net for brain age prediction with Swin Transformer blocks; code open-sourced at <a href="https://github.com/wan-mlab/Swin-U-NET">wan-mlab/Swin-U-NET</a>.</p>
-      <p class="meta">2024</p>
-    </div>
-  </div>
-
-  <div class="work">
-    <div class="body">
-      <h3>Modality-Aware Pedestrian Attentive Learning for VI-ReID</h3>
-      <p>PedMix, a data augmentation tailored to visible-infrared re-identification (+4.67% mAP), combined with a modality feature transfer module that fuses cross-attention and convolution at minimal overhead.</p>
-      <p class="meta">2023</p>
-    </div>
-  </div>
-
-  <div class="work">
-    <div class="body">
-      <h3>Lightweight Directional-Aware Network for Classification</h3>
-      <p>A comprehensive review and taxonomy of non-learned-operator deep models, plus a lightweight directional-aware network reaching state-of-the-art accuracy at a fraction of the computational cost.</p>
-      <p class="meta">2023 · <span class="venue">Artificial Intelligence Review</span> (IF 10.7)</p>
-    </div>
-  </div>
-
   <h2 id="publications">Publications</h2>
   <ul class="pubs">
+    <li><b class="me">Wenhao Zhang</b>, et al.
+      &ldquo;Contamination, Prior, or Evidence? Decomposing and Training Evidence Use in Whole-Slide Vision&ndash;Language Models.&rdquo;
+      <span class="muted">Under review</span>, <span class="venue">ICLR 2027</span>.
+      <a href="https://github.com/wenhaozhang0066/CleanSlide">[code &amp; data]</a></li>
+    <li><b class="me">Wenhao Zhang</b>, et al.
+      &ldquo;Too Small to Tell: Auditing Sampled Decisions in Self-Evolving Agent Harnesses.&rdquo;
+      <span class="muted">Under review</span>, <span class="venue">NAACL 2027</span>.</li>
     <li><b class="me">Wenhao Zhang</b>, Zhongliang Zhou, John Kang, Sheng Li.
       &ldquo;Auditing Data Leakage in Whole-Slide Image Multimodal Benchmarks.&rdquo;
-      <span class="muted">Under review</span>, <span class="venue">WACV 2027</span> (Datasets &amp; Benchmarks Track).
+      <span class="venue">WACV 2027</span>.
       <a href="https://arxiv.org/abs/2607.12278">[arXiv]</a></li>
-    <li><b class="me">Wenhao Zhang</b>, et al.
-      &ldquo;Vision&ndash;Language Models for Computational Pathology: A Survey of Paradigms, Granularities, and Benchmarks.&rdquo;
-      <span class="muted">Manuscript in preparation</span>, 2026.
-      <a href="https://github.com/wenhaozhang0066/Awesome-Pathology-VLMs">[paper list]</a></li>
-    <li><b class="me">Wenhao Zhang</b>, et al.
-      &ldquo;CleanSlide: A Leakage-Audited and Shortcut-Controlled Benchmark for Whole-Slide Vision&ndash;Language Models.&rdquo;
-      <span class="muted">Manuscript in preparation</span>, 2026.
-      <a href="https://github.com/wenhaozhang0066/CleanSlide">[code &amp; data]</a></li>
-    <li><b class="me">Wenhao Zhang</b>, Zhongliang Zhou, Sheng Li.
-      &ldquo;LANTERN: Learning a Data-Efficient Pathology Foundation Model through Multimodal Disentangled Representations.&rdquo;
-      <span class="muted">Manuscript in preparation</span>, 2025.</li>
-    <li>Yuwei Guo, Wei Zhan, Licheng Jiao, <b class="me">Wenhao Zhang</b>, Kairen Chen, Jiayu Jing, Liu Fang.
-      &ldquo;Multi-Distribution Time-Series Prototype Learning for Crop Mapping with Sentinel-1 SAR Imagery.&rdquo;
-      <span class="venue">IEEE Transactions on Geoscience and Remote Sensing</span>, 2025.</li>
+    <li>Lehan Yang, Daiqing Qi, <b class="me">Wenhao Zhang</b>, Avery Li, Yiqing Yang, Yifan Li, Yu Kong, Haitian Zheng, Zhifei Zhang, Zhe Lin, Varun Jampani, Sheng Li.
+      &ldquo;PixelDense: Dense Prediction as Representation Alignment for Pixel Diffusion.&rdquo;
+      <span class="venue">NeurIPS 2026</span>.
+      <a href="https://arxiv.org/abs/2610.00483">[arXiv]</a></li>
+    <li>Yiqing Yang, Yun Li, Daiqing Qi, Lehan Yang, Tianlong Wang, <b class="me">Wenhao Zhang</b>, Sheng Li, Kin-man Lam.
+      &ldquo;HFS: Holistic Query-Aware Frame Selection for Efficient Video Understanding.&rdquo;
+      <span class="venue">ACM MM 2026</span>.
+      <a href="https://openreview.net/forum?id=gusxntBfzU">[OpenReview]</a></li>
+    <li>Hanzhang Yuan, Mengxuan Hu, <b class="me">Wenhao Zhang</b>, Tianlong Wang, Zhongliang Zhou, Jiasen Lu, Sheng Li.
+      &ldquo;Reducing Token Redundancy in LVLMs: A Systematic Review of Token Pruning Methods.&rdquo;
+      <span class="venue">ACL 2026</span> (Long Papers).
+      <a href="https://aclanthology.org/2026.acl-long.328/">[ACL Anthology]</a></li>
+    <li>Tianlong Wang, Lehan Yang, Yuheng Liu, Hanzhang Yuan, <b class="me">Wenhao Zhang</b>, Pinqiao Wang, Yifan Li, Yu Kong, Sheng Li.
+      &ldquo;Evaluating Spatial World Modeling in Video Generators via 3D Camera Trajectory Generation.&rdquo;
+      <span class="venue">ICML 2026 Workshop</span> on Foundations of Deep Generative Models.
+      <a href="https://openreview.net/forum?id=QITfyV8G9Y">[OpenReview]</a></li>
     <li>Yuwei Guo, <b class="me">Wenhao Zhang</b>, Licheng Jiao, Jiabo Du, Shuo Wang, Shuang Wang, Fang Liu.
       &ldquo;Visible-Infrared Person Re-Identification with Region-Based Augmentation and Cross-Modality Attention.&rdquo;
       <span class="venue">Scientific Reports</span>, 2025.</li>
     <li>Yuwei Guo, <b class="me">Wenhao Zhang</b>, Yupeng Gao, Licheng Jiao, Rong Qu, Shuang Wang, Fang Liu, Jiabo Du.
       &ldquo;Revisiting Non-Learned Operators Based Deep Learning: A Lightweight Directional-Aware Network for Classification.&rdquo;
       <span class="venue">Artificial Intelligence Review</span>, 2024.</li>
+    <li><b class="me">Wenhao Zhang</b>, et al.
+      &ldquo;Vision&ndash;Language Models for Computational Pathology: A Survey of Paradigms, Granularities, and Benchmarks.&rdquo;
+      <span class="muted">Manuscript in preparation</span>, 2026.
+      <a href="https://github.com/wenhaozhang0066/Awesome-Pathology-VLMs">[paper list]</a></li>
+    <li><b class="me">Wenhao Zhang</b>, Zhongliang Zhou, Sheng Li.
+      &ldquo;LANTERN: Learning a Data-Efficient Pathology Foundation Model through Multimodal Disentangled Representations.&rdquo;
+      <span class="muted">Manuscript in preparation</span>, 2025.</li>
   </ul>
 
   <h2 id="patents">Patents</h2>
